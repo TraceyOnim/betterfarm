@@ -16,7 +16,7 @@ defmodule BetterFarm.Farmer do
     field :county, :string
     field :country, :string
     field :gender, :string
-    has_many :products, Product
+
     timestamps()
   end
 end
