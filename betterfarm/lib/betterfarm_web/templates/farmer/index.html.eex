@@ -1,0 +1,21 @@
+<h1>Available farmers</h1>
+<table>
+	<tr>
+		<th>First_name</th>
+		<th>Last_name</th>
+		<th>Phone_number</th>
+		<th>Email_Address</th>
+		<th>Country</th>
+		<th>County</th>
+	</tr>
+	<%= for farmer <- @farmers do %>
+	<tr>
+		<td><%= farmer.first_name %></td>
+		<td><%= farmer.last_name %></td>
+		<td><%= farmer.phone_number %></td>
+		<td><%= farmer.email_address %></td>
+		<td><%= farmer.country %></td>
+		<td><%= farmer.county %></td>
+	</tr> 
+	<% end %>
+</table>

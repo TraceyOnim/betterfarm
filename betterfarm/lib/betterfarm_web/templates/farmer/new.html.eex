@@ -1,0 +1,48 @@
+<h1> Register Farmer </h1>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+	<p>Something went wrong, Try Again!!!</p>
+</div>
+<% end %>
+<%= form_for @changeset, Routes.farmer_path(@conn, :create), fn f -> %>
+<div>
+	<%= label f, :first_name, "First_name" %>
+	<%= text_input f, :first_name %>
+	<%= error_tag f, :first_name%>
+</div>
+<div>
+	<%= label f, :last_name, "Last_name" %>
+	<%= text_input f, :last_name %>
+	<%= error_tag f, :last_name%>
+</div>
+<div>
+	<%= label f, :phone_number, "Phone_number" %>
+	<%= text_input f, :phone_number %>
+	<%= error_tag f, :phone_number%>
+</div>
+<div>
+	<%= label f, :email_address, "Email_address" %>
+	<%= text_input f, :email_address %>
+	<%= error_tag f, :email_address%>
+</div>
+<div>
+	<%= label f, :national_id, "National_id" %>
+	<%= text_input f, :national_id %>
+	<%= error_tag f, :national_id%>
+</div>
+<div>
+	<%= label f, :country, "Country" %>
+	<%= select f, :country, ["Kenya": "kenya", "Tanzania": "tanzania", "Uganda": "uganda", "Rwanda": "rwanda"], prompt: "Choose your country" %>
+</div>
+<div>
+	<%= label f, :county, "County" %>
+	<%= select f, :county, ["Nairobi": "nairobi", "Kisumu": "kisumu", "Nakuru": "nakuru", "Mombasa": "mombasa"], prompt: "Choose your country" %>
+</div>
+<div>
+	<%= label f, :gender, "Male" %>
+	<%= radio_button f, :gender, "male" %>
+	<%= label f, :gender, "Female" %>
+	<%= radio_button f, :gender, "female" %>
+</div>
+<%= submit "Register" %>
+<% end %>
