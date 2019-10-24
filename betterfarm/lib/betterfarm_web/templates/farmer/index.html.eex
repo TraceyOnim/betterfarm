@@ -16,6 +16,7 @@
 		<td><%= farmer.email_address %></td>
 		<td><%= farmer.country %></td>
 		<td><%= farmer.county %></td>
+		<td><%= link "Details", to: "#", class: "button" %></td>
 	</tr> 
 	<% end %>
 </table>
