@@ -6,7 +6,6 @@ defmodule Betterfarm.Repo.Migrations.CreateFarmers do
       add :first_name, :string
       add :last_name, :string
       add :phone_number, :string
-      add :email_address, :string
       add :nationality, :string
       add :county, :string
       add :country, :string

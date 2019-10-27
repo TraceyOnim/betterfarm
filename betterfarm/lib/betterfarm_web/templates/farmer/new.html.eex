@@ -21,9 +21,14 @@
 	<%= error_tag f, :phone_number%>
 </div>
 <div>
-	<%= label f, :email_address, "Email_address" %>
-	<%= text_input f, :email_address %>
-	<%= error_tag f, :email_address%>
+	<%= inputs_for f, :credential, fn cf -> %>
+	<%= label cf, :email, "Email_Address" %>
+	<%= text_input cf, :email%>
+	<%= error_tag cf, :email%>
+	<%= label cf, :password, "Password" %>
+	<%= password_input cf, :password%>
+	<%= error_tag cf, :password%>
+	<% end %>
 </div>
 <div>
 	<%= label f, :national_id, "National_id" %>
