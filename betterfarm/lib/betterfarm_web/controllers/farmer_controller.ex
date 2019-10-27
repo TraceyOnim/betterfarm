@@ -9,7 +9,7 @@ defmodule BetterfarmWeb.FarmerController do
   end
 
   def create(conn, %{"farmer" => farmer}) do
-    case Account.create_farmer(farmer) do
+    case Account.register_farmer(farmer) do
       {:ok, farmer} ->
         conn
         |> put_flash(:info, "#{farmer.first_name} created successfully")

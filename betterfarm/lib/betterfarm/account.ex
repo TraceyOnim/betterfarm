@@ -26,6 +26,17 @@ defmodule Betterfarm.Account do
   end
 
   @doc """
+  same as create_user/1, except that register_farmer/1 register farmer with their email and password credentials.
+  Returns {:ok, %Farmer{}} if farmer is created successfully or {:error, changeset} incase of constriant violation or error raised
+  """
+  @spec register_farmer(map()) :: {:ok, %Farmer{}} | {:error, %Ecto.Changeset{}}
+  def register_farmer(attrs) do
+    %Farmer{}
+    |> Farmer.registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
   fetches all farmers from the database
   """
   @spec list_farmers() :: [%Farmer{}, ...]

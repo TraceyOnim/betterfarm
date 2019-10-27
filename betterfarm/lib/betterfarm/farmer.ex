@@ -17,7 +17,7 @@ defmodule Betterfarm.Farmer do
     field :county, :string
     field :country, :string
     field :gender, :string
-    belongs_to :credential, Credential
+    has_one :credential, Credential
 
     timestamps()
   end
