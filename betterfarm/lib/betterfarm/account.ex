@@ -2,6 +2,7 @@ defmodule Betterfarm.Account do
   @moduledoc """
   Defines all operation performed on farmer ,i.e creating farmer ,updating farmer
   """
+  import Ecto.Query
   alias Betterfarm.Farmer
   alias Betterfarm.Repo
 
@@ -43,5 +44,53 @@ defmodule Betterfarm.Account do
   def list_farmers do
     Farmer
     |> Repo.all()
+  end
+
+  @doc """
+  get_farmer/1 fetches the farmer from database whose id matches the given id
+  Returns %Farmer {} if the farmer exists otherwise nil
+  """
+  @spec get_farmer(integer()) :: %Farmer{} | nil
+  def get_farmer(id) do
+    Farmer
+    |> Repo.get(id)
+  end
+
+  @doc """
+  get_farmer_by_email/1 will fetch the farmer whose email address will match the given email.
+  Returns %Farmer{} if the farmer exists otherwise nil 
+  """
+  @spec get_farmer_by_email(String.t()) :: %Farmer{} | nil
+  def get_farmer_by_email(email) do
+    query = from f in Farmer, join: c in assoc(f, :credential), where: c.email == ^email
+
+    query
+    |> Repo.one()
+    |> Repo.preload(:credential)
+  end
+
+  @doc """
+  validates if the user matches the given password. 
+  Returns :
+  - {:ok, user} if the user is found and password matches
+  - {:error, :unauthorized} if the user password doesn't match
+  - {:error, :not_found} if the user is not found 
+  """
+  @spec verify_user_email_and_password(String.t(), String.t()) ::
+          {:ok, %Farmer{}} | {:error, :unauthorized} | {:error, :not_found}
+  def verify_user_email_and_password(email, password) do
+    user = get_farmer_by_email(email)
+
+    cond do
+      user && Comeonin.Pbkdf2.checkpw(password, user.credential.password_hash) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      true ->
+        Comeonin.Bcrypt.dummy_checkpw()
+        {:error, :not_found}
+    end
   end
 end
