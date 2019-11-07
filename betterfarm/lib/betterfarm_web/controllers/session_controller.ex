@@ -20,4 +20,10 @@ defmodule BetterfarmWeb.SessionController do
         |> render("new.html")
     end
   end
+
+  def delete(conn, _param) do
+    conn
+    |> Auth.logout()
+    |> redirect(to: "/")
+  end
 end
