@@ -23,6 +23,7 @@ defmodule BetterfarmWeb do
 
       import Plug.Conn
       import BetterfarmWeb.Gettext
+      import BetterfarmWeb.Auth, only: [authenticate: 2]
       alias BetterfarmWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +51,7 @@ defmodule BetterfarmWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import BetterfarmWeb.Auth, only: [authenticate: 2]
     end
   end
 
