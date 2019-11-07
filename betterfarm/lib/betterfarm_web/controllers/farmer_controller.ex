@@ -3,7 +3,7 @@ defmodule BetterfarmWeb.FarmerController do
 
   alias Betterfarm.Account
 
-  plug :authenticate when action in [:new, :index]
+  plug :authenticate when action in [:index]
 
   def new(conn, _param) do
     changeset = Account.change_user()
@@ -15,7 +15,7 @@ defmodule BetterfarmWeb.FarmerController do
       {:ok, farmer} ->
         conn
         |> put_flash(:info, "#{farmer.first_name} created successfully")
-        |> redirect(to: Routes.farmer_path(conn, :index))
+        |> redirect(to: Routes.farmer_path(conn, :new))
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
