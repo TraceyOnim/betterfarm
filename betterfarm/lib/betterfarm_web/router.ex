@@ -20,6 +20,7 @@ defmodule BetterfarmWeb.Router do
     get "/", PageController, :index
     resources "/farmers", FarmerController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/products", ProductController
   end
 
   # Other scopes may use custom stacks.

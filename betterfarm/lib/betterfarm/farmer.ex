@@ -18,6 +18,7 @@ defmodule Betterfarm.Farmer do
     field :country, :string
     field :gender, :string
     has_one :credential, Credential
+    has_many :products, Betterfarm.Product
 
     timestamps()
   end
