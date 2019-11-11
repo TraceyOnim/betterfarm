@@ -1,5 +1,6 @@
 defmodule Betterfarm.Product do
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "products" do
     field :name, :string
@@ -12,5 +13,19 @@ defmodule Betterfarm.Product do
     belongs_to :farmer, Betterfarm.Farmer
 
     timestamps()
+  end
+
+  def changeset(product, attrs \\ %{}) do
+    product
+    |> cast(attrs, [
+      :name,
+      :price,
+      :location,
+      :description,
+      :image,
+      :quantity,
+      :category,
+      :farmer_id
+    ])
   end
 end

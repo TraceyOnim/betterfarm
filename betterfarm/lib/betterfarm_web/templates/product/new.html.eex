@@ -1,0 +1,42 @@
+<h1>Add products</h1>
+<div>
+	<%= form_for @changeset, Routes.product_path(@conn, :create),[multipart: true], fn f -> %>
+	<div>
+		<%= label f, :name, "Product Name"%>
+		<%= select f, :name, product_name(), prompt: "select product name"%>
+
+	</div>
+	<div>
+		<%= label f, :price, "Price"%>
+		<%= text_input f, :price%>
+		<%= error_tag f, :price%>
+	</div>
+	<div>
+		<%= label f, :location, "Location"%>
+		<%= text_input f, :location %>
+		<%= error_tag f, :location%>
+	</div>
+	<div>
+		<%= label f, :quantity, "Quantity"%>
+		<%= text_input f, :quantity %>
+		<%= error_tag f, :quantity %>
+	</div>
+
+	<div>
+		<%= label f, :category, "Category"%>
+		<%= select f, :category, category_name(), prompt: "select category" %>
+		
+	</div>
+	<div>
+		<%= label f, :description, "Description"%>
+		<%= textarea f, :description%>
+		
+	</div>
+	<div>
+		<%=label f, :image, "Upload image of the product"%>
+		<%= file_input f , :image%>
+	</div>
+
+	<%= submit "Add Product"%>
+	<% end %>
+</div>

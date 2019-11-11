@@ -6,7 +6,6 @@ defmodule Betterfarm.Farmer do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias BetterFarm.Product
   alias Betterfarm.Credential
 
   schema "farmers" do
