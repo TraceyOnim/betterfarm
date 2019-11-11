@@ -26,15 +26,4 @@ defmodule BetterfarmWeb.FarmerController do
     farmers = Account.list_farmers()
     render(conn, "index.html", farmers: farmers)
   end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Routes.session_path(conn, :new))
-      |> halt()
-    end
-  end
 end
