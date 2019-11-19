@@ -9,6 +9,7 @@ defmodule Betterfarm.Product do
     field :description, :string
     field :image, :string
     field :quantity, :string
+    field :unit, :string
     field :category, :string
     belongs_to :farmer, Betterfarm.Farmer
 
@@ -16,16 +17,18 @@ defmodule Betterfarm.Product do
   end
 
   def changeset(product, attrs \\ %{}) do
-    product
-    |> cast(attrs, [
+    field = [
       :name,
       :price,
       :location,
       :description,
-      :image,
       :quantity,
-      :category,
-      :farmer_id
-    ])
+      :unit,
+      :category
+    ]
+
+    product
+    |> cast(attrs, field ++ [:farmer_id])
+    |> validate_required(field)
   end
 end

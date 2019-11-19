@@ -1,3 +1,3 @@
 defmodule BetterfarmWeb.SessionView do
-	use BetterfarmWeb, :view
+  use BetterfarmWeb, :view
 end

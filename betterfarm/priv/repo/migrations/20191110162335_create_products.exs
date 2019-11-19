@@ -9,6 +9,7 @@ defmodule Betterfarm.Repo.Migrations.CreateProducts do
       add :description, :string
       add :image, :string
       add :quantity, :string
+      add :unit, :string
       add :category, :string
       add :farmer_id, references(:farmers)
 

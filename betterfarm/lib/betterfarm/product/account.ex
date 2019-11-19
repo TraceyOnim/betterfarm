@@ -56,4 +56,15 @@ defmodule Betterfarm.Product.Account do
     query
     |> Repo.all()
   end
+
+  @doc """
+  Inserts product into the database.
+  Returns {:ok, %Product{}} if saved successfully otherwise {:error, changeset}
+  """
+  @spec create_product(map()) :: {:ok, %Product{}} | {:error, %Ecto.Changeset{}}
+  def create_product(attrs) do
+    %Product{}
+    |> Product.changeset(attrs)
+    |> Repo.insert()
+  end
 end
