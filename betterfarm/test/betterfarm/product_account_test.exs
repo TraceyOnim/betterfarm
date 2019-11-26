@@ -1,12 +1,24 @@
 defmodule Betterfarm.ProductAccountTest do
   use Betterfarm.DataCase
 
-  alias Betterfarm.Product.Account
+  alias Betterfarm.Account
+  alias Betterfarm.ProductAccount
   alias Betterfarm.Product
   alias Betterfarm.Repo
 
   setup do
-    farmer = farmer_fixture()
+    valid_attr = %{
+      first_name: "second",
+      last_name: "last",
+      phone_number: "0718039047",
+      nationality: "1234563",
+      country: "Kenya",
+      county: "Kisumu",
+      gender: "male",
+      credential: %{email: "secondlast@email.com", password: "secret0"}
+    }
+
+    {:ok, farmer} = Account.register_farmer(valid_attr)
 
     valid_attr = %{
       "name" => "sukuma",
@@ -26,14 +38,15 @@ defmodule Betterfarm.ProductAccountTest do
 
   describe "create_product/1" do
     test "product is saved into the database", %{valid_attr: valid_attr} do
-      {:ok, product} = Account.create_product(valid_attr)
+      {:ok, product} = ProductAccount.create_product(valid_attr)
       assert product.name == "sukuma"
     end
 
     test "product with invalid attributes is not saved into the database", %{
       invalid_attr: invalid_attr
     } do
-      assert {:error, changeset} = Account.create_product(invalid_attr)
+      assert {:error, changeset} = ProductAccount.create_product(invalid_attr)
+
       assert Repo.all(Product) == []
     end
   end

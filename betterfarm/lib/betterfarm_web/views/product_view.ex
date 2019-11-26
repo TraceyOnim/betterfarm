@@ -1,13 +1,13 @@
 defmodule BetterfarmWeb.ProductView do
   use BetterfarmWeb, :view
 
-  alias Betterfarm.Product.Account
+  alias Betterfarm.ProductAccount
 
   def product_name do
-    Account.list_product_name()
+    ProductAccount.list_product_name()
   end
 
   def category_name do
-    Account.list_category_name()
+    ProductAccount.list_category_name()
   end
 end

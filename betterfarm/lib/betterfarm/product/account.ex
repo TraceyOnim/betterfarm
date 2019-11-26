@@ -1,4 +1,4 @@
-defmodule Betterfarm.Product.Account do
+defmodule Betterfarm.ProductAccount do
   @moduledoc """
    This is product context
   """

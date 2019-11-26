@@ -2,15 +2,15 @@ defmodule BetterfarmWeb.ProductController do
   use BetterfarmWeb, :controller
 
   alias Betterfarm.Product
-  alias Betterfarm.Product.Account
+  alias Betterfarm.ProductAccount
 
   def new(conn, _param) do
-    changeset = Account.change_product(%Product{})
+    changeset = ProductAccount.change_product(%Product{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"product" => product}) do
-    case Account.create_product(product) do
+    case ProductAccount.create_product(product) do
       {:ok, _product} ->
         conn
         |> put_flash(:info, "product added successfully")

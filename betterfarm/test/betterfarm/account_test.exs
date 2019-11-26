@@ -28,9 +28,11 @@ defmodule Betterfarm.AccountTest do
       credential: %{email: "secondlast@email.com", password: "secret0"}
     }
 
+    {:ok, farmer} = Account.register_farmer(valid_attr)
+
     invalid_attr = %{}
 
-    [valid_attr: valid_attr, invalid_attr: invalid_attr, valid_attr2: valid_attr2]
+    [valid_attr: valid_attr, invalid_attr: invalid_attr, valid_attr2: valid_attr2, farmer: farmer]
   end
 
   describe "creating farmers" do
@@ -42,7 +44,6 @@ defmodule Betterfarm.AccountTest do
 
     test "with invalid data doesn't insert user", %{invalid_attr: invalid_attr} do
       assert {:error, _changeset} = Account.register_farmer(invalid_attr)
-      assert Account.list_farmers() == []
     end
   end
 
@@ -50,11 +51,7 @@ defmodule Betterfarm.AccountTest do
     @email "firstlast@email.com"
     @pass "secret"
 
-    setup do
-      {:ok, user: farmer_fixture()}
-    end
-
-    test "returns farmer with correct password", %{user: %Farmer{id: id}} do
+    test "returns farmer with correct password", %{farmer: %Farmer{id: id}} do
       {:ok, farmer} = Account.verify_user_email_and_password(@email, @pass)
       assert farmer.id == id
     end
@@ -70,17 +67,14 @@ defmodule Betterfarm.AccountTest do
   end
 
   test "list_farmers/0  fetches all farmers from the database", %{
-    valid_attr: valid_attr,
     valid_attr2: valid_attr2
   } do
-    {:ok, _farmer1} = Account.register_farmer(valid_attr)
     {:ok, _farmer2} = Account.register_farmer(valid_attr2)
     assert Farmer |> Repo.all() |> Enum.count() == 2
   end
 
   describe "get_farmer/1" do
-    test "fetches farmer from database whose id matches the given id" do
-      farmer = farmer_fixture()
+    test "fetches farmer from database whose id matches the given id", %{farmer: farmer} do
       %Farmer{first_name: first_name} = Account.get_farmer(farmer.id)
       assert first_name == farmer.first_name
     end
@@ -91,8 +85,7 @@ defmodule Betterfarm.AccountTest do
   end
 
   describe "get_farmer_by_email/1" do
-    test "fetches farmer from database whose email matches the given email" do
-      farmer = farmer_fixture()
+    test "fetches farmer from database whose email matches the given email", %{farmer: farmer} do
       %Farmer{first_name: first_name} = Account.get_farmer_by_email(farmer.credential.email)
       assert first_name == farmer.first_name
     end

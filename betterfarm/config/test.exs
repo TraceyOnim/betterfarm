@@ -12,7 +12,12 @@ config :betterfarm, Betterfarm.Repo,
 # you can enable the server option below.
 config :betterfarm, BetterfarmWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: true
+
+config :phoenix_integration, endpoint: BetterfarmWeb.Endpoint
+
+# Set up Phoenix to serve endpoints in tests and enable SQL sandbox
+config :betterfarm, :sql_sandbox, true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
