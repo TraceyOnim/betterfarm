@@ -1,0 +1,8 @@
+<h1><%=@farmer.first_name%> Details</h1>
+<div>
+	<p>Name: <%= @farmer.first_name%> <%= @farmer.last_name%></p>
+	<p>Phone number: <%= @farmer.phone_number%></p>
+	<p>Country: <%= @farmer.country%></p>
+	<p>County: <%= @farmer.county%></p>
+
+</div>

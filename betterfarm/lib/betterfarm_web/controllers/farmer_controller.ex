@@ -26,4 +26,9 @@ defmodule BetterfarmWeb.FarmerController do
     farmers = Account.list_farmers()
     render(conn, "index.html", farmers: farmers)
   end
+
+  def show(conn, %{"id" => id}) do
+    farmer = Account.get_farmer(id)
+    render(conn, "show.html", farmer: farmer)
+  end
 end

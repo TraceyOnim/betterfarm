@@ -14,7 +14,8 @@
 		<td><%= farmer.phone_number %></td>
 		<td><%= farmer.country %></td>
 		<td><%= farmer.county %></td>
-		<td><%= link "Details", to: "#", class: "button" %></td>
+		<td><%= link "view", to: Routes.farmer_path(@conn, :show, farmer.id), class: "button" %></td>
+		<td><%= link "connect",to: "#", class: "button" %></td>
 	</tr> 
 	<% end %>
 </table>
