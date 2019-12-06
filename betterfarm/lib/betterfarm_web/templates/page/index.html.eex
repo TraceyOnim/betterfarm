@@ -1,35 +1,41 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
-</section>
-
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
-</section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="/images/sm.jpg" alt="connect" class="img-responsive">
+      <%# <h2>BetterFarm</h2>
+      <p>Connect with buyers and farmers around you to sell your produce</p> %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="text-success">What is Betterfarm?</h1>
+      <p>Betterfarm is an online market place where buyers and sellers meet to trade farm related products and services. Its accessible through the internet and allows users to post their farm produce.Aim of Betterfarm is to unlock the door to better market and information access to smallholder farmers</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-xs-offset-1 col-xs-3">
+      <div class="thumbnail">
+        <img src="/images/connectf.jpg" alt="connect" class="img-responsive img-circle">
+        <div class="caption">
+          <p>Connect with other farmers to share ideas and knowledge of good farming practices</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="thumbnail">
+      <img src="/images/market.jpg" alt="market" class="img-responsive img-circle">
+      <div class="caption">
+          <p>Engage thousands of buyers directly when your produce is ready</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="thumbnail">
+      <img src="/images/trends.png" alt="trends" class="img-responsive img-circle">
+      <div class="caption">
+          <p>Get information on price trends to know the market price of products.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
