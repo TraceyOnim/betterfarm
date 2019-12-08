@@ -12,22 +12,32 @@
   </head>
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= if @current_user do %>
-            <li><%= @current_user.first_name %></li>
-            <li><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
-            <li><%= link "farmers", to: Routes.farmer_path(@conn, :index)%></li>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">BetterFarm</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Price trends</a></li>
+          <li><a href="#">Market</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <%= if @current_user do %>
+            <li><span class="glyphicon glyphicon-log-out"></span><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
             <% else %>
-            <li><%= link "Register", to: Routes.farmer_path(@conn, :new)%></li>
-            <li><%= link "Log in", to: Routes.session_path(@conn, :new)%></li>
+             <li><a href="/farmers/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+            <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
             <% end %>
-          </ul>
-        </nav>
+        </ul>
         
-      </section>
+      </div>
+      
+    </nav>
+ 
+     
     </header>
+
     <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
