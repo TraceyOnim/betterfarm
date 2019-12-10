@@ -3,7 +3,7 @@ defmodule BetterfarmWeb.FarmerController do
 
   alias Betterfarm.Account
 
-  plug :authenticate when action in [:index]
+  plug :authenticate when action in [:index, :show, :edit]
 
   def new(conn, _param) do
     changeset = Account.change_user()
@@ -30,5 +30,11 @@ defmodule BetterfarmWeb.FarmerController do
   def show(conn, %{"id" => id}) do
     farmer = Account.get_farmer(id)
     render(conn, "show.html", farmer: farmer)
+  end
+
+  def edit(conn, %{"id" => id}) do
+    farmer = Account.preload_farmer_credential(id)
+    changeset = Betterfarm.Farmer.changeset(farmer)
+    render(conn, "edit.html", changeset: changeset, farmer: farmer)
   end
 end

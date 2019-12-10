@@ -21,10 +21,19 @@
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">Price trends</a></li>
           <li><a href="#">Market</a></li>
+          <li><%= link "Connect", to: Routes.farmer_path(@conn, :index)%></li>
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <%= if @current_user do %>
-            <li><span class="glyphicon glyphicon-log-out"></span><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
+          <li class = "dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link "Setting", to: Routes.farmer_path(@conn, :edit, @current_user.id)%></li>
+              </ul>
+          </li>
+            <li><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
             <% else %>
              <li><a href="/farmers/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
             <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>

@@ -2,6 +2,7 @@ defmodule Betterfarm.AccountTest do
   use Betterfarm.DataCase
 
   alias Betterfarm.Account
+  alias Betterfarm.Credential
   alias Betterfarm.Repo
   alias Betterfarm.Farmer
 
@@ -93,5 +94,13 @@ defmodule Betterfarm.AccountTest do
     test "returns nil if farmer doesn't exist" do
       assert Account.get_farmer_by_email("first@email.com") == nil
     end
+  end
+
+  test "preload_farmer_credential/1 returns farmer struct with preloaded credential", %{
+    farmer: farmer
+  } do
+    %Farmer{credential: %Credential{email: email}} = Account.preload_farmer_credential(farmer.id)
+
+    assert farmer.credential.email == email
   end
 end

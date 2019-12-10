@@ -23,7 +23,7 @@ defmodule BetterfarmWeb.FarmerTest do
     test "user can see register link", %{conn: conn} do
       conn
       |> get(Routes.page_path(conn, :index))
-      |> assert_response(html: "Register")
+      |> assert_response(html: "Sign Up")
     end
 
     test "user can see log in link", %{conn: conn} do
@@ -34,10 +34,10 @@ defmodule BetterfarmWeb.FarmerTest do
   end
 
   describe "farmer registration" do
-    test "user is redirected to registration page on click of register link", %{conn: conn} do
+    test "user is redirected to registration page on click of sign up link", %{conn: conn} do
       conn
       |> get(Routes.page_path(conn, :index))
-      |> click_link("Register")
+      |> click_link("Sign Up")
       |> assert_response(html: "Register Farmer", path: "/farmers/new")
     end
 
@@ -56,7 +56,7 @@ defmodule BetterfarmWeb.FarmerTest do
     } do
       conn
       |> _sign_in_user(farmer)
-      |> follow_link("farmers")
+      |> follow_link("Connect")
       |> assert_response(html: "Available farmers", path: "/farmers")
     end
 
@@ -70,6 +70,20 @@ defmodule BetterfarmWeb.FarmerTest do
       |> click_link("view")
       |> assert_response(html: "#{farmer.first_name} Details")
     end
+  end
+
+  test "user is redirected to edit page when they click settings link", %{
+    conn: conn,
+    farmer: farmer
+  } do
+    conn
+    |> _sign_in_user(farmer)
+    |> get(Routes.farmer_path(conn, :edit, farmer.id))
+    |> assert_response(
+      html: "Update",
+      status: 200,
+      path: Routes.farmer_path(conn, :edit, farmer.id)
+    )
   end
 
   test "requires user authentication in order to have access", %{conn: conn} do

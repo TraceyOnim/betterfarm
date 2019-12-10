@@ -57,6 +57,15 @@ defmodule Betterfarm.Account do
   end
 
   @doc """
+  preloaded_farmer_credentials/1 returns farmer's struct with preloaded credentials
+  """
+  @spec preload_farmer_credential(integer()) :: %Farmer{}
+  def preload_farmer_credential(id) do
+    farmer = get_farmer(id)
+    Repo.preload(farmer, :credential)
+  end
+
+  @doc """
   get_farmer_by_email/1 will fetch the farmer whose email address will match the given email.
   Returns %Farmer{} if the farmer exists otherwise nil 
   """
