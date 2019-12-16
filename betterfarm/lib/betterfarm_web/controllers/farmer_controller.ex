@@ -28,6 +28,7 @@ defmodule BetterfarmWeb.FarmerController do
   end
 
   def show(conn, %{"id" => id}) do
+    {id, _} = Integer.parse(id)
     farmer = Account.get_farmer(id)
     render(conn, "show.html", farmer: farmer)
   end
