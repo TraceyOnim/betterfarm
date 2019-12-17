@@ -4,7 +4,7 @@
 	<p>Something went wrong, Try Again!!!</p>
 </div>
 <% end %>
-<%= form_for @changeset, Routes.farmer_path(@conn, :update, @farmer.id), fn f -> %>
+<%= form_for @changeset, Routes.farmer_path(@conn, :update, @farmer), fn f -> %>
 <div>
 	<%= label f, :first_name, "First_name" %>
 	<%= text_input f, :first_name %>

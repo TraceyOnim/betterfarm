@@ -38,6 +38,17 @@ defmodule Betterfarm.Account do
   end
 
   @doc """
+  update_farmer/2 updates the existing farmer in the db, whose id is given.
+  Returns {:ok, farmer} if the farmer is updated successfully otherwise {:error, changeset}
+  """
+  @spec update_farmer(integer(), map()) :: {:ok, %Farmer{}} | {:error, %Ecto.Changeset{}}
+  def update_farmer(farmer, attrs) do
+    farmer
+    |> Farmer.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
   fetches all farmers from the database
   """
   @spec list_farmers() :: [%Farmer{}, ...]

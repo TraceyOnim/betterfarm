@@ -31,6 +31,7 @@ defmodule Betterfarm.Farmer do
       :phone_number,
       :nationality,
       :county,
+      :country,
       :gender
     ])
     |> validate_required([:first_name, :last_name, :phone_number])
