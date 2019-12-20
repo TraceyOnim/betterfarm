@@ -19,6 +19,7 @@ defmodule Betterfarm.Farmer do
     field :slug, :string
     has_one :credential, Credential
     has_many :products, Betterfarm.Product
+    has_many :videos, Betterfarm.Multimedia.Video
 
     timestamps()
   end
@@ -36,7 +37,6 @@ defmodule Betterfarm.Farmer do
     ])
     |> validate_required([:first_name, :last_name, :phone_number])
     |> slugify_farmer_id()
-    |> IO.inspect()
   end
 
   def slugify_farmer_id(changeset) do
@@ -47,8 +47,7 @@ defmodule Betterfarm.Farmer do
   end
 
   defp slugify(value) do
-    value
-    |> String.downcase()
+    "farmer-in-" <> value <> "-" <> Ecto.UUID.generate()
   end
 
   def registration_changeset(farmer, attrs \\ %{}) do
@@ -56,10 +55,8 @@ defmodule Betterfarm.Farmer do
     |> changeset(attrs)
     |> cast_assoc(:credential, with: &Credential.changeset/2, required: true)
   end
-end
 
-defimpl Phoenix.Param, for: Betterfarm.Farmer do
-  def to_param(%{slug: slug, id: id}) do
-    "#{id}-#{slug}"
+  defimpl Phoenix.Param do
+    def to_param(%{slug: slug, id: id}), do: "#{id}-#{slug}"
   end
 end

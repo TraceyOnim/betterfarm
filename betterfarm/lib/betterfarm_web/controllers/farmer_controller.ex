@@ -42,6 +42,7 @@ defmodule BetterfarmWeb.FarmerController do
   end
 
   def update(conn, %{"farmer" => attrs, "id" => id}) do
+    {id, _} = Integer.parse(id)
     farmer = Account.get_farmer(id)
 
     case Account.update_farmer(farmer, attrs) do

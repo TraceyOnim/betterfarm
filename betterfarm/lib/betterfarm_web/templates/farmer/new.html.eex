@@ -1,3 +1,4 @@
+<div class="container col-xs-offset-2 col-xs-8 col-xs-offset-2 all_forms">
 <h1> Register Farmer </h1>
 <%= if @changeset.action do %>
 <div class="alert alert-danger">
@@ -5,49 +6,50 @@
 </div>
 <% end %>
 <%= form_for @changeset, Routes.farmer_path(@conn, :create), fn f -> %>
-<div>
+<div class="form-group">
 	<%= label f, :first_name, "First_name" %>
-	<%= text_input f, :first_name %>
+	<%= text_input f, :first_name, class: "form-control" %>
 	<%= error_tag f, :first_name%>
 </div>
-<div>
+<div class="form-group">
 	<%= label f, :last_name, "Last_name" %>
-	<%= text_input f, :last_name %>
+	<%= text_input f, :last_name, class: "form-control" %>
 	<%= error_tag f, :last_name%>
 </div>
-<div>
+<div class="form-group">
 	<%= label f, :phone_number, "Phone_number" %>
-	<%= text_input f, :phone_number %>
+	<%= text_input f, :phone_number, class: "form-control" %>
 	<%= error_tag f, :phone_number%>
 </div>
-<div>
+<div class="form-group">
 	<%= inputs_for f, :credential, fn cf -> %>
 	<%= label cf, :email, "Email_Address" %>
-	<%= text_input cf, :email%>
+	<%= text_input cf, :email, class: "form-control"%>
 	<%= error_tag cf, :email%>
 	<%= label cf, :password, "Password" %>
-	<%= password_input cf, :password%>
+	<%= password_input cf, :password, class: "form-control"%>
 	<%= error_tag cf, :password%>
 	<% end %>
 </div>
-<div>
+<div class="form-group">
 	<%= label f, :national_id, "National_id" %>
-	<%= text_input f, :national_id %>
+	<%= text_input f, :national_id, class: "form-control" %>
 	<%= error_tag f, :national_id%>
 </div>
-<div>
+<div class="form-group">
 	<%= label f, :country, "Country" %>
 	<%= select f, :country, ["Kenya": "kenya", "Tanzania": "tanzania", "Uganda": "uganda", "Rwanda": "rwanda"], prompt: "Choose your country" %>
 </div>
-<div>
+<div class="form-group">
 	<%= label f, :county, "County" %>
 	<%= select f, :county, ["Nairobi": "nairobi", "Kisumu": "kisumu", "Nakuru": "nakuru", "Mombasa": "mombasa"], prompt: "Choose your country" %>
 </div>
-<div>
-	<%= label f, :gender, "Male" %>
-	<%= radio_button f, :gender, "male" %>
-	<%= label f, :gender, "Female" %>
-	<%= radio_button f, :gender, "female" %>
+<div class="form-group">
+	<%= label f, :gender, "Male", id: "lbl_gender" %>
+	<%= radio_button f, :gender, "male", id: "lbl_gender" %>
+	<%= label f, :gender, "Female", id: "lbl_gender" %>
+	<%= radio_button f, :gender, "female", id: "lbl_gender" %>
 </div>
-<%= submit "Register" %>
+<%= submit "Register", class: "btn btn-info" %>
 <% end %>
+</div>

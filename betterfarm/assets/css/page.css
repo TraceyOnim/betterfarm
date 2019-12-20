@@ -2,12 +2,37 @@
 	position: relative;
 }
 
-.text-box{
+.all_forms{
+  margin-top: 75px;
+}
+
+#jumbotron{
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 25%;
+  left: 25%;
   background-color: transparent;
   color: white;
-  padding-left: 20px;
-  padding-right: 20px;
+ 
 }
+
+#lbl_gender{
+  margin-left: 20px;
+}
+
+#show_page{
+  outline: 1px solid  #000;
+}
+
+#show_page h1{
+  margin-bottom: 20px;
+}
+
+
+
+h1 {
+  font-size: 19px;
+  line-height: 1.375em;
+  font-weight: 400;
+  margin: 70px 0;
+}
+

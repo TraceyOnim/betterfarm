@@ -1,5 +1,6 @@
-<h1>Available farmers</h1>
-<table>
+<div class="container all_forms">
+<h1>Connect with farmers</h1>
+<table class="table">
 	<tr>
 		<th>First_name</th>
 		<th>Last_name</th>
@@ -14,8 +15,9 @@
 		<td><%= farmer.phone_number %></td>
 		<td><%= farmer.country %></td>
 		<td><%= farmer.county %></td>
-		<td><%= link "view", to: Routes.farmer_path(@conn, :show, farmer), class: "button" %></td>
-		<td><%= link "connect",to: "#", class: "button" %></td>
+		<td><%= link "view", to: Routes.farmer_path(@conn, :show, farmer), class: "btn btn-success" %></td>
+		<td><%= link "connect",to: "#", class: "btn btn-success" %></td>
 	</tr> 
 	<% end %>
 </table>
+</div>

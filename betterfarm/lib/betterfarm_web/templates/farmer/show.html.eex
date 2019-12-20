@@ -1,8 +1,10 @@
-<h1><%=@farmer.first_name%> Details</h1>
+<div class="container all_forms col-xs-offset-4 col-xs-4 col-xs-offset-4" id="show_page">
+<h1 class="text-center"><%=@farmer.first_name%> Details</h1>
 <div>
-	<p>Name: <%= @farmer.first_name%> <%= @farmer.last_name%></p>
-	<p>Phone number: <%= @farmer.phone_number%></p>
-	<p>Country: <%= @farmer.country%></p>
-	<p>County: <%= @farmer.county%></p>
+	<p class="lead"><b>Name:</b> <%= @farmer.first_name%> <%= @farmer.last_name%></p>
+	<p class="lead"><b>Phone number:</b> <%= @farmer.phone_number%></p>
+	<p class="lead"><b>Country:</b> <%= @farmer.country%></p>
+	<p class="lead"><b>County:</b> <%= @farmer.county%></p>
 
+</div>
 </div>

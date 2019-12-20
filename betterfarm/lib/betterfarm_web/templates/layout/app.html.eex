@@ -18,7 +18,7 @@
           <a class="navbar-brand" href="#">BetterFarm</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class="active"><%= link "Home", to: Routes.page_path(@conn, :index)%></li>
           <li><a href="#">Price trends</a></li>
           <li><a href="#">Market</a></li>
           <li><%= link "Connect", to: Routes.farmer_path(@conn, :index)%></li>

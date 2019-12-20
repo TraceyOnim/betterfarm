@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-xs-12 hero">
       <img src="/images/sm.jpg" alt="connect" class="img-responsive">
-        <div class="text-box">
-        <h2>BetterFarm</h2>
+        <div class="jumbotron" id="jumbotron">
+        <h1 class="text-center">BetterFarm</h1>
          <p>Connect with buyers and farmers around you to sell your produce</p>
         </div>
      
@@ -11,9 +11,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-      <h1 class="text-success">What is Betterfarm?</h1>
-      <p>Betterfarm is an online market place where buyers and sellers meet to trade farm related products and services. Its accessible through the internet and allows users to post their farm produce.Aim of Betterfarm is to unlock the door to better market and information access to smallholder farmers</p>
+    <div class=" col-xs-offset-2 col-xs-8 col-xs-offset-2" >
+      <h1 class="text-success text-center">What is Betterfarm?</h1>
+      <p class="text-center">Betterfarm is an online market place where buyers and sellers meet to trade farm related products and services. Its accessible through the internet and allows users to post their farm produce.Aim of Betterfarm is to unlock the door to better market and information access to smallholder farmers.</p>
     </div>
   </div>
   <div class="row">
@@ -42,4 +42,6 @@
       </div>
     </div>
   </div>
+   
 </div>
+
