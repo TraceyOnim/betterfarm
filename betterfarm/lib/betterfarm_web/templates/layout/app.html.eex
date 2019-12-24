@@ -12,46 +12,55 @@
   </head>
   <body>
     <header>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">BetterFarm</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><%= link "Home", to: Routes.page_path(@conn, :index)%></li>
-          <li><a href="#">Price trends</a></li>
-          <li><a href="#">Market</a></li>
-          <li><%= link "Connect", to: Routes.farmer_path(@conn, :index)%></li>
-          
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <%= if @current_user do %>
-          <li class = "dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link "Setting", to: Routes.farmer_path(@conn, :edit, @current_user.id)%></li>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">BetterFarm</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link "Home", to: Routes.page_path(@conn, :index)%></li>
+            <li><a href="#">Price trends</a></li>
+            <li><a href="#">Market</a></li>
+            <li><%= link "Connect", to: Routes.farmer_path(@conn, :index)%></li>
+            <%= if @current_user do %>
+            <li><%= link "Videos", to: Routes.farmer_video_path(@conn, :index, @current_user.id)%></li>
+            <li class = "dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link "Video", to: Routes.farmer_video_path(@conn, :new, @current_user.id) %></li>
+                </ul>
+              </li>
+              <% end %>
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <%= if @current_user do %>
+              <li class = "dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link "Setting", to: Routes.farmer_path(@conn, :edit, @current_user.id)%></li>
+                  </ul>
+                </li>
+                <li><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
+                <% else %>
+                <li><a href="/farmers/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
+                <% end %>
               </ul>
-          </li>
-            <li><%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete"%></li>
-            <% else %>
-             <li><a href="/farmers/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-            <li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>Log in</a></li>
-            <% end %>
-        </ul>
-        
-      </div>
-      
-    </nav>
- 
-     
-    </header>
-
-    <main role="main">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
-  </body>
-</html>
+              
+            </div>
+            
+          </nav>
+          
+          
+        </header>
+        <main role="main">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+        <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+      </body>
+    </html>

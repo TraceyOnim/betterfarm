@@ -1,0 +1,25 @@
+<div class="container all_forms col-xs-offset-2">
+<div class="row">
+	<div class="col-xs-4">
+		<h1><%= @video.title%></h1>
+		<%= content_tag :div, id: "video", data: [id: @video.id, player_id: player_id(@video)] do %>
+		<% end %>
+	</div>
+	<div class="col-xs-4 annotations">
+		<h3>Annotations</h3>
+		<div id="msg-container">
+		</div>
+		<div class="col-xs-4">
+			<textarea id="msg-input"
+			rows="3"
+			placeholder="Comment...">
+			</textarea>
+			<button id="msg-submit" class="btn btn-info"
+			type="submit">
+			Post
+			</button>
+		</div>
+	</div>
+	
+</div>
+</div>

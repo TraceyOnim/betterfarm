@@ -1,0 +1,21 @@
+<div class="container col-xs-offset- 4 col-xs-4 col-xs-offset-4 all_forms">
+<h1>Available Videos</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<%= for video <- @videos do %>
+		<tr>
+			<td><%= video.title%></td>
+			<td><%= link "Watch", to: Routes.watch_path(@conn, :show, video), class: "btn btn-success"%></td>
+			<td><%= link "Edit", to: "#", class: "btn btn-warning"%></td>
+			<td><%= link "Delete", to: "#", class: "btn btn-danger"%></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

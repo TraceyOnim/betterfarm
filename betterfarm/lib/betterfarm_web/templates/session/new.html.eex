@@ -13,3 +13,4 @@
 <%= submit "Log In", class: "btn btn-info log_btn" %>
 <% end %>
 </div>
+

@@ -18,9 +18,14 @@ defmodule BetterfarmWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/farmers", FarmerController
+
+    resources "/farmers", FarmerController do
+      resources "/video", VideoController
+    end
+
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/products", ProductController
+    get "/watch/:id", WatchController, :show
   end
 
   # Other scopes may use custom stacks.

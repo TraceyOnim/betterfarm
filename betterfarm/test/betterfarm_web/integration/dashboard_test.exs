@@ -53,6 +53,19 @@ defmodule BetterfarmWeb.DashboardTest do
       |> follow_link("Setting")
       |> assert_response(html: "Update")
     end
+
+    test "user is redirected to video page where they can see list of all videos shared", %{
+      conn: conn,
+      farmer: farmer
+    } do
+      conn
+      |> _sign_in_user(farmer)
+      |> follow_link("Videos")
+      |> assert_response(
+        path: Routes.farmer_video_path(conn, :index, farmer.id),
+        html: "Available videos"
+      )
+    end
   end
 
   defp _sign_in_user(conn, user) do

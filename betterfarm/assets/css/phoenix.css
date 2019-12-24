@@ -25,11 +25,13 @@
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
+   margin-top: 50px;
 }
 .alert-danger {
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
+   margin-top: 50px;
 }
 .alert p {
   margin-bottom: 0;

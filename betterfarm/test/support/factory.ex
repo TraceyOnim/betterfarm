@@ -1,11 +1,16 @@
 defmodule Betterfarm.Factory do
+  @moduledoc """
+  Test factory module necessary for creating data needed for test
+  """
+  alias Betterfarm.Credential
+  alias Betterfarm.Farmer
   alias Betterfarm.Multimedia.Video
   alias Betterfarm.Repo
 
   def build(:video) do
     %Video{
-      url: "http://example.com",
-      title: "New farming technology"
+      url: "http://example#{System.unique_integer()}.com",
+      title: "New farming#{System.unique_integer()} technology"
     }
   end
 
@@ -16,6 +21,7 @@ defmodule Betterfarm.Factory do
 
   # inserts data directly to the repository 
   def insert!(factory_name, attributes \\ []) do
-    Repo.insert!(build(factory_name, attributes))
+    result = Repo.insert!(build(factory_name, attributes))
+    {:ok, result}
   end
 end
