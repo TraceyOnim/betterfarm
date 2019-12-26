@@ -57,7 +57,7 @@ defmodule BetterfarmWeb.FarmerTest do
       conn
       |> _sign_in_user(farmer)
       |> follow_link("Connect")
-      |> assert_response(html: "Available farmers", path: "/farmers")
+      |> assert_response(html: "Connect with farmers", path: "/farmers")
     end
 
     test "when user clicks on view is redirected to a page with farmers details", %{
@@ -91,6 +91,21 @@ defmodule BetterfarmWeb.FarmerTest do
     |> get(Routes.farmer_path(conn, :index))
     |> assert_response(status: 302, assigns: %{current_user: nil})
   end
+
+  test "user can see delete account button when on update page", %{conn: conn, farmer: farmer} do
+    conn
+    |> _sign_in_user(farmer)
+    |> get(Routes.farmer_path(conn, :edit, farmer.id))
+    |> assert_response(html: "Delete Account")
+  end
+
+  # test "user can delete their accounts", %{conn: conn, farmer: farmer} do
+  #   conn
+  #   |> _sign_in_user(farmer)
+  #   |> get(Routes.farmer_path(conn, :edit, farmer.id))
+  #   |> follow_link("Delete Account")
+  #   |> IO.inspect()
+  # end
 
   defp _sign_in_user(conn, user) do
     conn

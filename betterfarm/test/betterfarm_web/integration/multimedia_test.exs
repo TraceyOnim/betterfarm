@@ -41,10 +41,7 @@ defmodule BetterfarmWeb.MultimediaTest do
       conn
       |> _sign_in_user(farmer)
       |> follow_link("Video")
-      |> assert_response(
-        path: Routes.farmer_video_path(conn, :new, farmer.id),
-        html: "Share video"
-      )
+      |> assert_response(html: "Available Videos")
     end
 
     test "farmer can share video", %{conn: conn, farmer: farmer} do
@@ -59,7 +56,7 @@ defmodule BetterfarmWeb.MultimediaTest do
       conn
       |> _sign_in_user(farmer)
       |> follow_link("Videos")
-      |> assert_response(html: "Available videos")
+      |> assert_response(html: "Available Videos")
     end
   end
 

@@ -63,7 +63,7 @@ defmodule BetterfarmWeb.DashboardTest do
       |> follow_link("Videos")
       |> assert_response(
         path: Routes.farmer_video_path(conn, :index, farmer.id),
-        html: "Available videos"
+        html: "Available Videos"
       )
     end
   end

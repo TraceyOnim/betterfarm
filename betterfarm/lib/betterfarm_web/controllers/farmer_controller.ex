@@ -57,4 +57,21 @@ defmodule BetterfarmWeb.FarmerController do
         |> render("new.html", changeset: changeset, farmer: farmer)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    {id, _} = Integer.parse(id)
+    farmer = Account.get_farmer(id)
+
+    case Account.delete_farmer(farmer) do
+      {:ok, farmer} ->
+        conn
+        |> put_flash(:info, "Your account is successfully deleted")
+        |> redirect(to: Routes.page_path(conn, :index))
+
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "Something went wrong, Try Again!!")
+        |> render("edit.html", changeset: changeset, farmer: farmer)
+    end
+  end
 end

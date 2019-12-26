@@ -50,6 +50,11 @@
 	<%= label f, :gender, "Female", id: "lbl_gender" %>
 	<%= radio_button f, :gender, "female", id: "lbl_gender" %>
 </div>
+<div class="col-xs-2">
 <%= submit "Update", class: "btn btn-info" %>
+</div>
+<div class="col-xs-2">
+	<%= link "Delete Account", to: Routes.farmer_path(@conn, :delete, @farmer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger"%>
+</div>
 <% end %>
 </div>

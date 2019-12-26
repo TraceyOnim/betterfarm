@@ -7,7 +7,7 @@ defmodule Betterfarm.Account do
   alias Betterfarm.Repo
 
   @doc """
-  Invokes changeset() from Betterfarm.Returns a changeset
+  Invokes changeset/2 from Betterfarm.Returns a changeset
   """
   @spec change_user() :: %Ecto.Changeset{}
   def change_user() do
@@ -65,6 +65,17 @@ defmodule Betterfarm.Account do
   def get_farmer(id) do
     Farmer
     |> Repo.get(id)
+  end
+
+  @doc """
+  Deletes the farmer whose id given matches.
+  Returns {:ok, %Farmer{}} if the farmer is successfully deleted. Otherwise {:error, changeset}
+
+  """
+  @spec delete_farmer(integer()) :: {:ok, %Farmer{}} | {:error, %Ecto.Changeset{}}
+  def delete_farmer(farmer) do
+    farmer
+    |> Repo.delete()
   end
 
   @doc """

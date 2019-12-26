@@ -112,4 +112,9 @@ defmodule Betterfarm.AccountTest do
     assert updated_farmer.county == "Nairobi"
     refute updated_farmer.county == farmer.county
   end
+
+  test "delete_farmer/1 deletes the farmer from db whose id given matches", %{farmer: farmer} do
+    {:ok, deleted_farmer} = Account.delete_farmer(farmer)
+    assert Repo.get(Farmer, deleted_farmer.id) == nil
+  end
 end
