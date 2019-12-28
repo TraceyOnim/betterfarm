@@ -54,4 +54,14 @@ defmodule Betterfarm.Multimedia.VideoAccount do
     |> Video.changeset(attrs)
     |> Repo.update()
   end
+
+  @doc """
+  delete_video/1 deletes the existing video in db.
+  Returns {:ok, %Video{}} if successfully deleted. Otherwise {:error, changeset}.
+
+  """
+  def delete_video(video) do
+    video
+    |> Repo.delete()
+  end
 end

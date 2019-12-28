@@ -13,7 +13,7 @@
 			<td><%= video.title%></td>
 			<td><%= link "Watch", to: Routes.watch_path(@conn, :show, video), class: "btn btn-success"%></td>
 			<td><%= link "Edit", to: Routes.farmer_video_path(@conn, :edit,  @farmer_id, video), class: "btn btn-warning"%></td>
-			<td><%= link "Delete", to: "#", class: "btn btn-danger"%></td>
+			<td><%= link "Delete", to: Routes.farmer_video_path(@conn, :delete, @farmer_id, video),method: :delete, data: [confirm: "Are you sure"], class: "btn btn-danger"%></td>
 		</tr>
 		<% end %>
 	</tbody>

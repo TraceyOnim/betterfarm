@@ -4,7 +4,7 @@ defmodule BetterfarmWeb.VideoController do
   alias Betterfarm.Multimedia.Video
   alias Betterfarm.Multimedia.VideoAccount
 
-  plug :authenticate when action in [:new, :index, :edit]
+  plug :authenticate when action in [:new, :index, :edit, :delete]
 
   def new(conn, %{"farmer_id" => farmer_id}) do
     changeset = VideoAccount.change_video(%Video{})
@@ -53,6 +53,23 @@ defmodule BetterfarmWeb.VideoController do
         conn
         |> put_flash(:error, "Something went wrong, Try Again!!")
         |> render("edit.html", changeset: changeset, video: video, farmer_id: farmer_id)
+    end
+  end
+
+  def delete(conn, %{"farmer_id" => farmer_id, "id" => id}) do
+    {id, _} = Integer.parse(id)
+    video = VideoAccount.get_video(id)
+
+    case VideoAccount.delete_video(video) do
+      {:ok, error} ->
+        conn
+        |> put_flash(:info, "video has been deleted successfully")
+        |> redirect(to: Routes.farmer_video_path(conn, :index, farmer_id))
+
+      {:error, _changeset} ->
+        conn
+        |> put_flash(:error, "Something went wrong, Try Again")
+        |> redirect(to: Routes.farmer_video_path(conn, :index, farmer_id))
     end
   end
 end

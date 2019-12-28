@@ -62,4 +62,16 @@ defmodule Betterfarm.VideoAccountTest do
     {:ok, video} = VideoAccount.update_video(video, updated_attr)
     assert video.title == updated_attr.title
   end
+
+  test "delete_video/1 deletes video in the db", %{video_attr: video_attr} do
+    # create video
+    {:ok, video} = VideoAccount.create_video(video_attr)
+    # get the existing video from db
+
+    video = VideoAccount.get_video(video.id)
+    # delete video
+    {:ok, deleted_video} = VideoAccount.delete_video(video)
+
+    assert Repo.get(Video, deleted_video.id) == nil
+  end
 end
