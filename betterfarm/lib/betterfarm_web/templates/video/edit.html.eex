@@ -1,0 +1,28 @@
+<div class="container col-xs-offset-4 col-xs-4 col-xs-offset-4 all_forms">
+<h1 class="text-center">Edit <%= @video.title%></h1>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+	<p>Something went wrong, Try Again!!!</p>
+</div>
+<% end %>
+<%= form_for @changeset, Routes.farmer_video_path(@conn, :update, @farmer_id, @video), fn f -> %>
+<div class="form-group">
+	<%= label f, :url, "Url"%>
+	<%= text_input f, :url, class: "form-control" %>
+	<%= error_tag f, :url%>
+</div>
+
+<div class="form-group">
+	<%= label f, :title, "Title"%>
+	<%= text_input f, :title, class: "form-control" %>
+	<%= error_tag f, :title%>
+</div>
+
+<div class="form-group">
+	<%= label f, :description, "Description"%>
+	<%= textarea f, :description, class: "form-control" %>
+</div>
+
+<%= submit "Share video", class: "btn btn-info"%>
+<% end %>
+</div>

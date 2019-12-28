@@ -50,4 +50,16 @@ defmodule Betterfarm.VideoAccountTest do
     assert [first_video, second_video] == VideoAccount.list_videos()
     assert VideoAccount.list_videos() |> Enum.count() == 2
   end
+
+  test "update_video/2 updates video in the db", %{video_attr: video_attr} do
+    # create video
+    {:ok, video} = VideoAccount.create_video(video_attr)
+    # get the existing video from db
+    video = VideoAccount.get_video(video.id)
+
+    # update the existing video in db
+    updated_attr = %{video_attr | title: "best technology"}
+    {:ok, video} = VideoAccount.update_video(video, updated_attr)
+    assert video.title == updated_attr.title
+  end
 end

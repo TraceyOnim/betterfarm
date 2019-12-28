@@ -104,7 +104,7 @@ defmodule Betterfarm.AccountTest do
     assert farmer.credential.email == email
   end
 
-  test "update_farmer/2 updates the farmer in the db whose id is given", %{
+  test "update_farmer/2 updates the farmer in the db", %{
     farmer: farmer
   } do
     existing_farmer = Account.get_farmer(farmer.id)

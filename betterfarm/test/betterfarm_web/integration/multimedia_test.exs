@@ -17,7 +17,8 @@ defmodule BetterfarmWeb.MultimediaTest do
     }
 
     {:ok, farmer} = Account.register_farmer(farmer_attr)
-    [farmer: farmer]
+    {:ok, video} = insert!(:video, farmer_id: farmer.id)
+    [farmer: farmer, video: video]
   end
 
   describe "video" do
@@ -57,6 +58,31 @@ defmodule BetterfarmWeb.MultimediaTest do
       |> _sign_in_user(farmer)
       |> follow_link("Videos")
       |> assert_response(html: "Available Videos")
+    end
+
+    test "farmer is redirected to edit page on clicking edit button", %{
+      conn: conn,
+      farmer: farmer
+    } do
+      conn
+      |> _sign_in_user(farmer)
+
+      # create video
+      {:ok, video} = insert!(:video, farmer_id: farmer.id)
+
+      conn
+      |> _sign_in_user(farmer)
+      |> get(Routes.farmer_video_path(conn, :index, farmer.id))
+      |> follow_link("Edit")
+      |> assert_response(html: "Edit")
+    end
+
+    test "farmer can update video", %{conn: conn, farmer: farmer, video: video} do
+      conn
+      |> _sign_in_user(farmer)
+      |> get(Routes.farmer_video_path(conn, :edit, farmer.id, video.id))
+      |> follow_form(%{video: %{title: "Best technology"}})
+      |> assert_response(html: "video updated successfully")
     end
   end
 

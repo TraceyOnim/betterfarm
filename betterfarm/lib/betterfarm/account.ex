@@ -38,7 +38,7 @@ defmodule Betterfarm.Account do
   end
 
   @doc """
-  update_farmer/2 updates the existing farmer in the db, whose id is given.
+  update_farmer/2 updates the existing farmer in the db.
   Returns {:ok, farmer} if the farmer is updated successfully otherwise {:error, changeset}
   """
   @spec update_farmer(integer(), map()) :: {:ok, %Farmer{}} | {:error, %Ecto.Changeset{}}

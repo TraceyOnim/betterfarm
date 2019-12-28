@@ -42,4 +42,16 @@ defmodule Betterfarm.Multimedia.VideoAccount do
     Video
     |> Repo.all()
   end
+
+  @doc """
+  update_video/2 updates the existing video in the db.
+  Returns {:ok, %Video{}} if successfully updated. otherwise {:error, changeset}
+
+  """
+  @spec update_video(struct(), map()) :: {:ok, %Video{}} | {:error, %Ecto.Changeset{}}
+  def update_video(video, attrs) do
+    video
+    |> Video.changeset(attrs)
+    |> Repo.update()
+  end
 end
