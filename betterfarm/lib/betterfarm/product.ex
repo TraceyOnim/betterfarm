@@ -8,7 +8,7 @@ defmodule Betterfarm.Product do
     field :location, :string
     field :description, :string
     field :image, :string
-    field :quantity, :string
+    field :quantity, :float
     field :unit, :string
     field :category, :string
     belongs_to :farmer, Betterfarm.Farmer

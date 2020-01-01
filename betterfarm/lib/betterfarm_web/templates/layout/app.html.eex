@@ -28,6 +28,7 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <li><%= link "Product", to: Routes.farmer_product_path(@conn, :new, @current_user.id) %></li>
                   <li><%= link "Video", to: Routes.farmer_video_path(@conn, :new, @current_user.id) %></li>
                 </ul>
               </li>

@@ -1,42 +1,52 @@
-<h1>Add products</h1>
+<div class="container col-xs-offset-4 col-xs-4 col-xs-offset-4 all_forms">
+<h1 class="text-center">Add products</h1>
 <div>
-	<%= form_for @changeset, Routes.product_path(@conn, :create),[multipart: true], fn f -> %>
-	<div>
+	<%= form_for @changeset, Routes.farmer_product_path(@conn, :create, @farmer_id),[multipart: true], fn f -> %>
+	<div class="form-group">
 		<%= label f, :name, "Product Name"%>
-		<%= select f, :name, product_name(), prompt: "select product name"%>
+		<%= select f, :name, product_name(), prompt: "select product name", class: "form-control"%>
 
 	</div>
-	<div>
+	<div class="form-group">
 		<%= label f, :price, "Price"%>
-		<%= text_input f, :price%>
+		<%= text_input f, :price, class: "form-control"%>
 		<%= error_tag f, :price%>
 	</div>
-	<div>
+	<div class="form-group">
 		<%= label f, :location, "Location"%>
-		<%= text_input f, :location %>
+		<%= text_input f, :location, class: "form-control" %>
 		<%= error_tag f, :location%>
 	</div>
-	<div>
+	<div class="row">
+	<div class="form-group col-xs-6">
 		<%= label f, :quantity, "Quantity"%>
-		<%= text_input f, :quantity %>
+		<%= text_input f, :quantity, class: "form-control" %>
 		<%= error_tag f, :quantity %>
 	</div>
-
-	<div>
-		<%= label f, :category, "Category"%>
-		<%= select f, :category, category_name(), prompt: "select category" %>
+	<div class="form-group col-xs-6">
+		<%= label f, :unit, "Unit"%>
+		<%= select f, :unit, [kg: "kg", grams: "grams"], class: "form-control"%>
 		
 	</div>
-	<div>
+
+	</div>
+
+	<div class="form-group">
+		<%= label f, :category, "Category"%>
+		<%= select f, :category, category_name(), prompt: "select category", class: "form-control" %>
+		
+	</div>
+	<div class="form-group">
 		<%= label f, :description, "Description"%>
-		<%= textarea f, :description%>
+		<%= textarea f, :description, class: "form-control"%>
 		
 	</div>
 	<div>
 		<%=label f, :image, "Upload image of the product"%>
-		<%= file_input f , :image%>
+		<%= file_input f , :image, class: "file-input"%>
 	</div>
 
-	<%= submit "Add Product"%>
+	<%= submit "Add Product", class: "btn btn-info"%>
 	<% end %>
+</div>
 </div>

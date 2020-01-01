@@ -20,11 +20,11 @@ defmodule BetterfarmWeb.Router do
     get "/", PageController, :index
 
     resources "/farmers", FarmerController do
+      resources "/products", ProductController
       resources "/video", VideoController
     end
 
     resources "/sessions", SessionController, only: [:new, :create, :delete]
-    resources "/products", ProductController
     get "/watch/:id", WatchController, :show
   end
 
