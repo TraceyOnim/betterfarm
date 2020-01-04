@@ -99,13 +99,13 @@ defmodule BetterfarmWeb.FarmerTest do
     |> assert_response(html: "Delete Account")
   end
 
-  # test "user can delete their accounts", %{conn: conn, farmer: farmer} do
-  #   conn
-  #   |> _sign_in_user(farmer)
-  #   |> get(Routes.farmer_path(conn, :edit, farmer.id))
-  #   |> follow_link("Delete Account")
-  #   |> IO.inspect()
-  # end
+  test "user can delete their accounts", %{conn: conn, farmer: farmer} do
+    conn
+    |> _sign_in_user(farmer)
+    |> get(Routes.farmer_path(conn, :edit, farmer.id))
+    |> follow_link("Delete Account", method: :delete)
+    |> assert_response(html: "Your account is successfully deleted")
+  end
 
   defp _sign_in_user(conn, user) do
     conn
