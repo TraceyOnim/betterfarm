@@ -1,0 +1,8 @@
+version: 2
+ jobs:
+   build:
+     docker:
+       - image: circleci/elixir:1.7.3
+     steps:
+       - checkout
+       - run: echo "A first hello"
