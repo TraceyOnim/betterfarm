@@ -1,52 +1,100 @@
 <div class="container col-xs-offset-4 col-xs-4 col-xs-offset-4 all_forms">
-<h1 class="text-center">Add products</h1>
-<div>
-	<%= form_for @changeset, Routes.farmer_product_path(@conn, :create, @farmer_id),[multipart: true], fn f -> %>
-	<div class="form-group">
-		<%= label f, :name, "Product Name"%>
-		<%= select f, :name, product_name(), prompt: "select product name", class: "form-control"%>
-
-	</div>
-	<div class="form-group">
-		<%= label f, :price, "Price"%>
-		<%= text_input f, :price, class: "form-control"%>
-		<%= error_tag f, :price%>
-	</div>
-	<div class="form-group">
-		<%= label f, :location, "Location"%>
-		<%= text_input f, :location, class: "form-control" %>
-		<%= error_tag f, :location%>
-	</div>
-	<div class="row">
-	<div class="form-group col-xs-6">
-		<%= label f, :quantity, "Quantity"%>
-		<%= text_input f, :quantity, class: "form-control" %>
-		<%= error_tag f, :quantity %>
-	</div>
-	<div class="form-group col-xs-6">
-		<%= label f, :unit, "Unit"%>
-		<%= select f, :unit, [kg: "kg", grams: "grams"], class: "form-control"%>
-		
-	</div>
-
-	</div>
-
-	<div class="form-group">
-		<%= label f, :category, "Category"%>
-		<%= select f, :category, category_name(), prompt: "select category", class: "form-control" %>
-		
-	</div>
-	<div class="form-group">
-		<%= label f, :description, "Description"%>
-		<%= textarea f, :description, class: "form-control"%>
-		
-	</div>
+	<h1 class="text-center">Add products</h1>
 	<div>
-		<%=label f, :image, "Upload image of the product"%>
-		<%= file_input f , :image, class: "file-input"%>
+		<%= form_for @changeset, Routes.farmer_product_path(@conn, :create, @farmer_id),[multipart: true], fn f -> %>
+		<div class="form-group">
+			<%= label f, :name, "Product Name"%>
+			<%= select f, :name, product_name(), prompt: "select product name", class: "form-control"%>
+		</div>
+		<div class="form-group">
+			<%= label f, :price, "Price"%>
+			<%= text_input f, :price, class: "form-control"%>
+			<%= error_tag f, :price%>
+		</div>
+		<div class="form-group">
+			<%= label f, :location, "Location"%>
+			<%= text_input f, :location, class: "form-control" %>
+			<%= error_tag f, :location%>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-6">
+				<%= label f, :quantity, "Quantity"%>
+				<%= text_input f, :quantity, class: "form-control" %>
+				<%= error_tag f, :quantity %>
+			</div>
+			<div class="form-group col-xs-6">
+				<%= label f, :unit, "Unit"%>
+				<%= select f, :unit, [kg: "kg", grams: "grams"], class: "form-control"%>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<%= label f, :category, "Category"%>
+			<%= select f, :category, category_name(), prompt: "select category", class: "form-control" %>
+			
+		</div>
+		<div class="form-group">
+			<%= label f, :description, "Description"%>
+			<%= textarea f, :description, class: "form-control"%>
+			
+		</div>
+		<div>
+			<label for="product_image" class="label label-info"><i class="fa fa-upload"></i> Upload image(s) of the product</label>
+			<%= file_input f , :image, multiple: true, class: "file-input form-control inputfile", id: "product_image" , accept: 'image/png, jpeg, jpg '%>
+			
+			<div class="col-md-12" id="blah" style="padding: 10px;"></div>
+			<br/>
+		</div>
+		<%= submit "Add Product", class: "btn btn-info"%>
+		<% end %>
 	</div>
+</div>
+<style type="text/css">
+	.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.label {
+    font-size: 1.0em;
+    font-weight: 700;
+    padding: 15px;
+    color: white;
+    /*background-color: black;*/
+    display: inline-block;
+} 
 
-	<%= submit "Add Product", class: "btn btn-info"%>
-	<% end %>
-</div>
-</div>
+.label:focus,
+.label:hover {
+    opacity: 0.6;
+}
+.label {
+	cursor: pointer; /* "hand" cursor */
+}
+.label {
+	/*outline: 1px dotted #000;*/
+	outline: -webkit-focus-ring-color auto 5px;
+}
+</style>
+<script>
+	function readURL(input) {
+	if (input.files && input.files.length > 0) {
+		// console.log(input.files)
+		$( "#blah" ).empty();
+		let files = input.files;
+		for(i = 0; i < input.files.length; i++){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+			$('#blah').append($('<img class="col-md-4 img-responsive thumbnail" >').attr('src', e.target.result));
+		}
+			reader.readAsDataURL(input.files[i]);
+		}
+	}
+	}
+	$("#product_image").change(function() {
+			readURL(this);
+	});
+</script>

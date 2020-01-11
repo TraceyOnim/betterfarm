@@ -22,3 +22,24 @@ Player.init(video.id, video.getAttribute("data-player-id"), () => {
 console.log("player ready!")
 })
 }
+
+import Vue from "vue";
+import Message from './components/Message'
+import AddProducts from './components/AddProducts'
+
+import axios from 'axios'
+window.axios = axios;
+axios.defaults.headers.common['Accept'] = 'application/json'
+let token = document.head.querySelector('meta[name="csrf_token"]');
+if(token){
+	axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+}else {
+	console.log('CSRF not found')
+}
+
+Vue.component('message', Message);
+Vue.component('add-products', AddProducts)
+
+new Vue({
+  el: "#app"
+});
