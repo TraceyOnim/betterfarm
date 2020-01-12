@@ -46,6 +46,8 @@ defmodule Betterfarm.MixProject do
       {:bcrypt_elixir, "~> 1.0"},
       {:pbkdf2_elixir, "~> 0.12"},
       {:plug_cowboy, "~> 2.0"},
+      {:arc, "~> 0.11.0"},
+      {:arc_ecto, "~> 0.11.3"},
       {:phoenix_integration, "~> 0.6", only: :test}
     ]
   end
