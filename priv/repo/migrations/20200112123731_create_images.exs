@@ -3,6 +3,7 @@ defmodule Betterfarm.Repo.Migrations.CreateImages do
 
   def change do
     create table(:images) do
+      add :avatar, :string
       add :product_id, references(:products, on_delete: :delete_all)
     end
   end
