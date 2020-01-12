@@ -7,10 +7,10 @@ defmodule Betterfarm.Product do
     field :price, :float
     field :location, :string
     field :description, :string
-    field :image, :string
     field :quantity, :float
     field :unit, :string
     field :category, :string
+    has_many :images, Betterfarm.Image
     belongs_to :farmer, Betterfarm.Farmer
 
     timestamps()
