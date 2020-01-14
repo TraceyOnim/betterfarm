@@ -7,7 +7,6 @@ defmodule Betterfarm.Repo.Migrations.CreateProducts do
       add :price, :float
       add :location, :string
       add :description, :string
-      add :image, :string
       add :quantity, :float
       add :unit, :string
       add :category, :string

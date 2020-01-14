@@ -61,7 +61,7 @@ defmodule BetterfarmWeb.VideoController do
     video = VideoAccount.get_video(id)
 
     case VideoAccount.delete_video(video) do
-      {:ok, error} ->
+      {:ok, _video} ->
         conn
         |> put_flash(:info, "video has been deleted successfully")
         |> redirect(to: Routes.farmer_video_path(conn, :index, farmer_id))

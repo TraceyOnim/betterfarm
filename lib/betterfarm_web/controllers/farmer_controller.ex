@@ -63,7 +63,7 @@ defmodule BetterfarmWeb.FarmerController do
     farmer = Account.get_farmer(id)
 
     case Account.delete_farmer(farmer) do
-      {:ok, farmer} ->
+      {:ok, _farmer} ->
         conn
         |> put_flash(:info, "Your account is successfully deleted")
         |> redirect(to: Routes.page_path(conn, :index))

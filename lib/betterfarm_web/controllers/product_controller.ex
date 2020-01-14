@@ -13,9 +13,12 @@ defmodule BetterfarmWeb.ProductController do
 
   def create(conn, %{"product" => product, "farmer_id" => farmer_id}) do
     attrs = Map.merge(product, %{"farmer_id" => farmer_id})
+    IO.inspect(attrs)
 
     case ProductAccount.create_product(attrs) do
-      {:ok, _product} ->
+      {:ok, product} ->
+        ProductAccount.create_image(attrs["image"], product.id) |> IO.inspect()
+
         conn
         |> put_flash(:info, "product added successfully")
         |> redirect(to: Routes.farmer_product_path(conn, :index, farmer_id))

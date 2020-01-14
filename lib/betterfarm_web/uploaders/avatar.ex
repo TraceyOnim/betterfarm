@@ -15,9 +15,9 @@ defmodule Betterfarm.Avatar do
   # end
 
   # Whitelist file extensions:
-  # def validate({file, _}) do
-  #   ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
-  # end
+  def validate({file, _}) do
+    ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
+  end
 
   # Define a thumbnail transformation:
   # def transform(:thumb, _) do
@@ -30,14 +30,16 @@ defmodule Betterfarm.Avatar do
   # end
 
   # Override the storage directory:
-  # def storage_dir(version, {file, scope}) do
-  #   "uploads/user/avatars/#{scope.id}"
-  # end
+  def storage_dir(version, {file, scope}) do
+    "uploads/user/avatars/#{scope.id}"
+  end
 
   # Provide a default URL if there hasn't been a file uploaded
-  # def default_url(version, scope) do
-  #   "/images/avatars/default_#{version}.png"
-  # end
+  def default_url(version, scope) do
+    "/images/avatars/default_#{version}.png"
+  end
+
+  def _storage, do: Arc.Storage.Local
 
   # Specify custom headers for s3 objects
   # Available options are [:cache_control, :content_disposition,

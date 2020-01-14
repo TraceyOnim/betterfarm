@@ -7,6 +7,7 @@ defmodule Betterfarm.ProductAccount do
   alias Betterfarm.Repo
   alias Betterfarm.Product
   alias Betterfarm.ProductName
+  alias Betterfarm.Image
 
   @doc """
   Fetches product_name from database otherwise it will insert the product_name if it doesn't exist.
@@ -63,8 +64,39 @@ defmodule Betterfarm.ProductAccount do
   """
   @spec create_product(map()) :: {:ok, %Product{}} | {:error, %Ecto.Changeset{}}
   def create_product(attrs) do
+    folderpath = Application.app_dir(:betterfarm, "priv/uploads")
+    attrs |> copy_images(folderpath)
+
     %Product{}
     |> Product.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_image(images, product_id) do
+    for image <- images do
+      %Image{}
+      |> Image.changeset(%{avatar: image, product_id: product_id, uuid: Ecto.UUID.generate()})
+      |> Repo.insert()
+    end
+  end
+
+  def copy_to_folder(attrs, folderpath) do
+    for image <- attrs["image"] do
+      File.cp!(
+        image.path,
+        folderpath <> "/#{Ecto.UUID.generate()}#{image.filename |> Path.extname()}"
+      )
+    end
+  end
+
+  def copy_images(attrs, folderpath) do
+    case File.exists?(folderpath) do
+      true ->
+        copy_to_folder(attrs, folderpath)
+
+      false ->
+        :ok = File.mkdir(folderpath)
+        copy_to_folder(attrs, folderpath)
+    end
   end
 end
