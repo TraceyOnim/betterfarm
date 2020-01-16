@@ -13,11 +13,10 @@ defmodule BetterfarmWeb.ProductController do
 
   def create(conn, %{"product" => product, "farmer_id" => farmer_id}) do
     attrs = Map.merge(product, %{"farmer_id" => farmer_id})
-    IO.inspect(attrs)
 
     case ProductAccount.create_product(attrs) do
       {:ok, product} ->
-        ProductAccount.create_image(attrs["image"], product.id) |> IO.inspect()
+        ProductAccount.copy_images(attrs["image"], product.id) |> IO.inspect(label: "cheeeeeeeck")
 
         conn
         |> put_flash(:info, "product added successfully")

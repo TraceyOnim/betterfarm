@@ -38,8 +38,7 @@ defmodule Betterfarm.ProductAccountTest do
 
   describe "create_product/1" do
     test "product is saved into the database", %{valid_attr: valid_attr} do
-      {:ok, product} = ProductAccount.create_product(valid_attr)
-      assert product.name == "sukuma"
+      assert {:ok, product} = ProductAccount.create_product(valid_attr)
     end
 
     test "product with invalid attributes is not saved into the database", %{

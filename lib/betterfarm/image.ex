@@ -4,7 +4,7 @@ defmodule Betterfarm.Image do
   import Ecto.Changeset
 
   schema "images" do
-    field :avatar, Betterfarm.Avatar.Type
+    field :avatar, :string
     field :uuid, :string
     belongs_to :product, Betterfarm.Product
   end
@@ -17,8 +17,8 @@ defmodule Betterfarm.Image do
   """
   def changeset(image, params \\ :invalid) do
     image
-    |> cast(params, [:product_id, :uuid])
-    |> cast_attachments(params, [:avatar])
+    |> cast(params, [:product_id, :uuid, :avatar])
+    # |> cast_attachments(params, [:avatar])
     |> validate_required([:avatar])
   end
 end

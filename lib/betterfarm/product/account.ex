@@ -64,39 +64,40 @@ defmodule Betterfarm.ProductAccount do
   """
   @spec create_product(map()) :: {:ok, %Product{}} | {:error, %Ecto.Changeset{}}
   def create_product(attrs) do
-    folderpath = Application.app_dir(:betterfarm, "priv/uploads")
-    attrs |> copy_images(folderpath)
-
     %Product{}
     |> Product.changeset(attrs)
     |> Repo.insert()
   end
 
-  def create_image(images, product_id) do
-    for image <- images do
-      %Image{}
-      |> Image.changeset(%{avatar: image, product_id: product_id, uuid: Ecto.UUID.generate()})
-      |> Repo.insert()
-    end
+  def create_image(image, product_id) do
+    %Image{}
+    |> Image.changeset(%{avatar: image, product_id: product_id, uuid: Ecto.UUID.generate()})
+    |> Repo.insert()
   end
 
-  def copy_to_folder(attrs, folderpath) do
-    for image <- attrs["image"] do
+  defp copy_to_folder(images, folderpath, product_id) do
+    for image <- images do
+      image_path = "#{Ecto.UUID.generate()}#{image.filename |> Path.extname()}"
+
       File.cp!(
         image.path,
-        folderpath <> "/#{Ecto.UUID.generate()}#{image.filename |> Path.extname()}"
+        folderpath <> "/#{image_path}"
       )
+
+      image_path |> create_image(product_id)
     end
   end
 
-  def copy_images(attrs, folderpath) do
+  def copy_images(images, product_id) do
+    folderpath = Application.app_dir(:betterfarm, "priv/uploads")
+
     case File.exists?(folderpath) do
       true ->
-        copy_to_folder(attrs, folderpath)
+        copy_to_folder(images, folderpath, product_id)
 
       false ->
         :ok = File.mkdir(folderpath)
-        copy_to_folder(attrs, folderpath)
+        copy_to_folder(images, folderpath, product_id)
     end
   end
 end
