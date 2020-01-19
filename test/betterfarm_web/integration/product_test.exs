@@ -26,23 +26,24 @@ defmodule BetterfarmWeb.ProductTest do
       |> assert_response(html: "Product")
     end
 
-    # test "user can add product", %{conn: conn, farmer: farmer} do
-    #   conn
-    #   |> _sign_in_user(farmer)
-    #   |> get(Routes.farmer_product_path(conn, :new, farmer.id))
-    #   |> follow_form(%{
-    #     product: %{
-    #       name: "sukuma",
-    #       price: 1000.00,
-    #       location: "kisumu",
-    #       description: "fresh sweet sukuma",
-    #       quantity: 100,
-    #       category: "veges",
-    #       unit: "kg"
-    #     }
-    #   })
-    #   |> assert_response(html: "product added successfully")
-    # end
+    test "user can add product", %{conn: conn, farmer: farmer} do
+      conn
+      |> _sign_in_user(farmer)
+      |> get(Routes.farmer_product_path(conn, :new, farmer.id))
+      |> follow_form(%{
+        product: %{
+          name: "sukuma",
+          price: 1000.00,
+          location: "kisumu",
+          description: "fresh sweet sukuma",
+          quantity: 100,
+          category: "veges",
+          unit: "kg",
+          image: []
+        }
+      })
+      |> assert_response(html: "product added successfully")
+    end
 
     test "product is not added with invalid data provided", %{conn: conn, farmer: farmer} do
       conn
