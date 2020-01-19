@@ -19,6 +19,18 @@ defmodule Betterfarm.Product.Catalog do
   end
 
   @doc """
+  Returns product name whose id given matches
+
+  """
+  @spec get_product_name(String.t()) :: String.t()
+  def get_product_name(id) do
+    id = String.to_integer(id)
+
+    product_name = ProductName |> Repo.get(id)
+    product_name.name
+  end
+
+  @doc """
   Fetches category name from database otherwise it will insert the category name if it doesn't exist.
   Returns %Category{}
   """
@@ -59,6 +71,18 @@ defmodule Betterfarm.Product.Catalog do
   end
 
   @doc """
+  Returns list of all products
+
+  """
+  @spec list_product() :: [%Product{}, ...]
+  def list_product, do: Repo.all(Product)
+
+  @spec preload_product(struct()) :: struct()
+  def preload_product(product) do
+    Repo.preload(product, :images)
+  end
+
+  @doc """
   Inserts product into the database.
   Returns {:ok, %Product{}} if saved successfully otherwise {:error, changeset}
   """
@@ -89,7 +113,7 @@ defmodule Betterfarm.Product.Catalog do
   end
 
   def copy_images(images, product_id) do
-    folderpath = Application.app_dir(:betterfarm, "priv/uploads")
+    folderpath = Application.app_dir(:betterfarm, "priv/static/uploads")
 
     case File.exists?(folderpath) do
       true ->

@@ -28,7 +28,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><%= link "Home", to: Routes.page_path(@conn, :index)%></li>
             <li><a href="#">Price trends</a></li>
-            <li><a href="#">Market</a></li>
+            <li><a href="<%= Routes.market_path(@conn, :index)%>">Market</a></li>
             <li><%= link "Connect", to: Routes.farmer_path(@conn, :index)%></li>
             <%= if @current_user do %>
             <li><%= link "Videos", to: Routes.farmer_video_path(@conn, :index, @current_user.id)%></li>

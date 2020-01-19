@@ -2,6 +2,7 @@ defmodule BetterfarmWeb.ProductTest do
   use BetterfarmWeb.IntegrationCase
 
   alias Betterfarm.Account
+  import Betterfarm.Factory
 
   setup do
     farmer_attr = %{
@@ -58,6 +59,20 @@ defmodule BetterfarmWeb.ProductTest do
       |> follow_path(Routes.farmer_product_path(conn, :new, farmer.id))
       |> assert_response(html: "You must be logged in to access that page")
     end
+  end
+
+  test "user can see products ready for sell when they click market link",
+       %{conn: conn} do
+    # insert product_name
+    {:ok, product_name} = insert!(:product_name)
+    # create product
+    {:ok, product} = insert!(:product, name: "#{product_name.id}")
+
+    conn
+    |> get(Routes.page_path(conn, :index))
+    |> follow_link("Market")
+    |> assert_response(html: "#{product_name.name}")
+    |> assert_response(html: "#{product.price}")
   end
 
   defp _sign_in_user(conn, user) do

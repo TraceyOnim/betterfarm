@@ -6,11 +6,37 @@ defmodule Betterfarm.Factory do
   alias Betterfarm.Farmer
   alias Betterfarm.Multimedia.Video
   alias Betterfarm.Repo
+  alias Betterfarm.Farmer
+  alias Betterfarm.Product
+  alias Betterfarm.ProductName
 
   def build(:video) do
     %Video{
       url: "http://example#{System.unique_integer()}.com",
       title: "New farming#{System.unique_integer()} technology"
+    }
+  end
+
+  def build(:product_name) do
+    %ProductName{
+      name: "sukuma#{System.unique_integer()}"
+    }
+  end
+
+  def build(:farmer) do
+    %Farmer{
+      first_name: "Tracey",
+      last_name: "Pendo",
+      phone_number: "254#{100_000_000..999_999_999 |> Enum.random() |> to_string()}"
+    }
+  end
+
+  def build(:product) do
+    {:ok, farmer} = insert!(:farmer)
+
+    %Product{
+      price: 100.00,
+      farmer_id: farmer.id
     }
   end
 

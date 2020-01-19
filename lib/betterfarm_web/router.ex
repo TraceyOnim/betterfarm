@@ -18,6 +18,7 @@ defmodule BetterfarmWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/market", MarketController
 
     resources "/farmers", FarmerController do
       resources "/products", ProductController
