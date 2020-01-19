@@ -2,21 +2,21 @@ defmodule BetterfarmWeb.ProductController do
   use BetterfarmWeb, :controller
 
   alias Betterfarm.Product
-  alias Betterfarm.ProductAccount
+  alias Betterfarm.Product.Catalog
 
   plug :authenticate when action in [:new, :index]
 
   def new(conn, %{"farmer_id" => farmer_id}) do
-    changeset = ProductAccount.change_product(%Product{})
+    changeset = Catalog.change_product(%Product{})
     render(conn, "new.html", changeset: changeset, farmer_id: farmer_id)
   end
 
   def create(conn, %{"product" => product, "farmer_id" => farmer_id}) do
     attrs = Map.merge(product, %{"farmer_id" => farmer_id})
 
-    case ProductAccount.create_product(attrs) do
+    case Catalog.create_product(attrs) do
       {:ok, product} ->
-        ProductAccount.copy_images(attrs["image"], product.id) |> IO.inspect(label: "cheeeeeeeck")
+        Catalog.copy_images(attrs["image"], product.id)
 
         conn
         |> put_flash(:info, "product added successfully")
