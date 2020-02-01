@@ -3,12 +3,32 @@
 	<div class="row">
 		<%= for product <- @products do %>
 		<div class="col-xs-3">
-			<div class="card">
-				<img src="<%= Routes.static_path(@conn, product_image(product))%>" alt="Denim Jeans" style="width:100%">
-				<h1><%= product_name(product.name)%></h1>
-				<p class="price">Ksh.<%= product.price%></p>
-				<p><%= product.description%></p>
-				<p><button>Add to Cart</button></p>
+			<div class="product thumbnail">
+				<div class="caption">
+					<h3>
+					<div class="product-name"><%= product_name(product.name) %></div>
+					<span class="pull-right">
+						<small class="product-price">Ksh. <%= product.price %>
+						</small>
+					</span>
+					</h3>
+					<hr/>
+					<%= form_for @conn, "/cart", [class: "cart-form form-inline", as:
+					:cart], fn f -> %>
+					<div class="form-group">
+						<div class="input-group">
+							<%= hidden_input f, :product_name, value: product.name %>
+							<%= hidden_input f, :product_id, value: product.id %>
+							<div class="input-group-addon">Qty</div>
+							<%= number_input f, :quantity, value: 1, class: "form-control", style: "width: 70px" %>
+						</div>
+						<%= error_tag f, :quantity %>
+					</div>
+					<%= submit "Add to cart", class: "btn btn-success pull-right"
+					%>
+					<% end %>
+				</div>
+				<img src="<%= Routes.static_path(@conn, product_image(product))%>" alt="<%= product_name(product.name)%>" style="width:100%">
 			</div>
 		</div>
 		<% end %>

@@ -73,6 +73,7 @@ defmodule BetterfarmWeb.ProductTest do
     |> follow_link("Market")
     |> assert_response(html: "#{product_name.name}")
     |> assert_response(html: "#{product.price}")
+    |> assert_response(html: "Add to Cart")
   end
 
   defp _sign_in_user(conn, user) do
