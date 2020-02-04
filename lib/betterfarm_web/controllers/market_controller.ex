@@ -5,6 +5,7 @@ defmodule BetterfarmWeb.MarketController do
 
   def index(conn, _params) do
     products = Catalog.list_product()
+    IO.inspect(products, label: "prrrrrrrrrrrrrrrrrrrrrr")
     render(conn, "index.html", products: products)
   end
 end

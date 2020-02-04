@@ -6,18 +6,22 @@
 			<div class="product thumbnail">
 				<div class="caption">
 					<h3>
+					<span class="text-muted pull-right"><small><%= product.pack_size %><%= product.unit%></small></span>
 					<div class="product-name"><%= product_name(product.name) %></div>
 					<span class="pull-right">
 						<small class="product-price">Ksh. <%= product.price %>
 						</small>
 					</span>
 					</h3>
+					<br>
 					<hr/>
 					<%= form_for @conn, "/cart", [class: "cart-form form-inline", as:
 					:cart], fn f -> %>
 					<div class="form-group">
 						<div class="input-group">
 							<%= hidden_input f, :product_name, value: product.name %>
+							<%= hidden_input f, :pack_size, value: product.pack_size
+							%>
 							<%= hidden_input f, :product_id, value: product.id %>
 							<div class="input-group-addon">Qty</div>
 							<%= number_input f, :quantity, value: 1, class: "form-control", style: "width: 70px" %>

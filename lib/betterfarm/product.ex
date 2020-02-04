@@ -7,7 +7,7 @@ defmodule Betterfarm.Product do
     field :price, :float
     field :location, :string
     field :description, :string
-    field :quantity, :float
+    field :pack_size, :float
     field :unit, :string
     field :category, :string
     has_many :images, Betterfarm.Image
@@ -22,7 +22,7 @@ defmodule Betterfarm.Product do
       :price,
       :location,
       :description,
-      :quantity,
+      :pack_size,
       :unit,
       :category
     ]

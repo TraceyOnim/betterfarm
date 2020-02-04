@@ -33,8 +33,10 @@ defmodule Betterfarm.Factory do
 
   def build(:product) do
     {:ok, farmer} = insert!(:farmer)
+    {:ok, product_name} = insert!(:product_name)
 
     %Product{
+      name: product_name.name,
       price: 100.00,
       farmer_id: farmer.id
     }

@@ -8,6 +8,7 @@ defmodule BetterfarmWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug BetterfarmWeb.Auth
+    plug BetterfarmWeb.FetchCart
   end
 
   pipeline :api do
@@ -18,6 +19,7 @@ defmodule BetterfarmWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    post "/cart", CartController, :add
     resources "/market", MarketController
 
     resources "/farmers", FarmerController do
