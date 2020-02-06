@@ -60,6 +60,12 @@ defmodule Betterfarm.Product.Catalog do
   end
 
   @doc """
+  Fetches product from the db whose id given matches
+  """
+  @spec get_product(integer()) :: %Product{} | nil
+  def get_product(product_id), do: Repo.get(Product, product_id)
+
+  @doc """
   Returns list of categories
   """
 

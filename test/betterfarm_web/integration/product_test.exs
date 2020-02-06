@@ -37,7 +37,7 @@ defmodule BetterfarmWeb.ProductTest do
           price: 1000.00,
           location: "kisumu",
           description: "fresh sweet sukuma",
-          quantity: 100,
+          pack_size: 100,
           category: "veges",
           unit: "kg",
           image: []
@@ -73,7 +73,7 @@ defmodule BetterfarmWeb.ProductTest do
     |> follow_link("Market")
     |> assert_response(html: "#{product_name.name}")
     |> assert_response(html: "#{product.price}")
-    |> assert_response(html: "Add to Cart")
+    |> assert_response(html: "Order")
   end
 
   defp _sign_in_user(conn, user) do

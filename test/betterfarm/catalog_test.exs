@@ -26,7 +26,7 @@ defmodule Betterfarm.CatalogTest do
       "price" => 1000,
       "location" => "nyakach",
       "description" => "fresh sukuma",
-      "quantity" => "10",
+      "pack_size" => 10,
       "unit" => "kg",
       "category" => "vegetables",
       "farmer_id" => farmer.id

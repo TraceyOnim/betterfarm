@@ -28,7 +28,7 @@
 						</div>
 						<%= error_tag f, :quantity %>
 					</div>
-					<%= submit "Add to cart", class: "btn btn-success pull-right"
+					<%= submit "Order", class: "btn btn-success pull-right"
 					%>
 					<% end %>
 				</div>
