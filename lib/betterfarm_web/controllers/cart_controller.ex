@@ -5,7 +5,6 @@ defmodule BetterfarmWeb.CartController do
 
   def add(conn, %{"cart" => cart_params}) do
     cart = conn.assigns.cart
-    IO.inspect(cart)
 
     case Sales.add_to_cart(cart, cart_params) do
       {:ok, _cart} ->
