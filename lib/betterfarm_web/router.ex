@@ -20,6 +20,7 @@ defmodule BetterfarmWeb.Router do
 
     get "/", PageController, :index
     post "/cart", CartController, :add
+    get "/cart", CartController, :show
     resources "/market", MarketController
 
     resources "/farmers", FarmerController do

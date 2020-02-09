@@ -5,6 +5,7 @@ defmodule BetterfarmWeb.CartController do
 
   def add(conn, %{"cart" => cart_params}) do
     cart = conn.assigns.cart
+    IO.inspect(cart)
 
     case Sales.add_to_cart(cart, cart_params) do
       {:ok, _cart} ->
@@ -17,5 +18,10 @@ defmodule BetterfarmWeb.CartController do
         |> put_flash(:error, "failed to add to cart")
         |> render("index.html", changeset: changeset)
     end
+  end
+
+  def show(conn, _param) do
+    cart = conn.assigns.cart
+    render(conn, "show.html", cart: cart)
   end
 end
