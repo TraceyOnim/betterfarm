@@ -1,47 +1,72 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12 hero">
-      <img src="/images/sm.jpg" alt="connect" class="img-responsive">
-        <div class="jumbotron" id="jumbotron">
-        <h1 class="text-center">BetterFarm</h1>
-         <p>Connect with buyers and farmers around you to sell your produce</p>
-        </div>
-     
-      
-    </div>
-  </div>
-  <div class="row">
-    <div class=" col-xs-offset-2 col-xs-8 col-xs-offset-2" >
-      <h1 class="text-success text-center">What is Betterfarm?</h1>
-      <p class="text-center">Betterfarm is an online market place where buyers and sellers meet to trade farm related products and services. Its accessible through the internet and allows users to post their farm produce.Aim of Betterfarm is to unlock the door to better market and information access to smallholder farmers.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class=" col-xs-offset-1 col-xs-3">
-      <div class="thumbnail">
-        <img src="/images/connectf.jpg" alt="connect" class="img-responsive img-circle">
-        <div class="caption">
-          <p>Connect with other farmers to share ideas and knowledge of good farming practices</p>
-        </div>
+<section id="farm">
+    <div class="container-image">
+      <div class="row-img">
+        <div class="col-md-12 hero">
+          <img src="/images/sm.jpg" alt="connect" class="img-responsive">
+            <div class="jumbotron" id="jumbotron">
+            <h1 class="text-center" style="font-family: Garamond;"><strong>BetterFarm</strong></h1>
+             <p>Connect with buyers and farmers around you to sell your produce</p>
+            </div>
+         </div>
       </div>
     </div>
-    <div class="col-xs-3">
-      <div class="thumbnail">
-      <img src="/images/market.jpg" alt="market" class="img-responsive img-circle">
-      <div class="caption">
-          <p>Engage thousands of buyers directly when your produce is ready</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-3">
-      <div class="thumbnail">
-      <img src="/images/trends.png" alt="trends" class="img-responsive img-circle">
-      <div class="caption">
-          <p>Get information on price trends to know the market price of products.</p>
-        </div>
+   <br>
+   <br>
+  <div class="container">
+    <div class="row">
+      <div class=" col-xs-offset-2 col-xs-8 col-xs-offset-2" >
+        <h1 class="text-success text-center" style="font-family: Garamond;">What is Betterfarm?</h1>
+        <p class="text-center lead" style="font-family: Garamond;">Betterfarm is an online market place where buyers and sellers meet to trade farm related products and services. Its accessible through the internet and allows users to post their farm produce.Aim of Betterfarm is to unlock <br>the door to better market and information access to smallholder farmers.</p>
       </div>
     </div>
   </div>
-   
-</div>
+  <br>
+  <br>
+   <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="width: 50rem;">
+            <div class="thumbnail">
+            <img class="card-img-top" src="/images/connectf.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text" style="font-family: Garamond; font-size: 19px;">Connect with other farmers to share ideas and knowledge of good farming practices.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          
+          <div class="card" style="width: 50rem;">
+            <div class="thumbnail">
+            <img class="card-img-top" src="/images/market.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text" style="font-family: Garamond; font-size: 19px;">Engage thousands of buyers directly when your produce is ready.</p>
+              <br>
+            </div>
+          </div>
+        
+        </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card" style="width: 50rem;">
+            <div class="thumbnail">
+            <img class="card-img-top" src="/images/trends.png" alt="Card image cap">
+            <div class="card-body">
+              <br>
+              <br>
+              <br>
+              <br>
+              <p class="card-text" style="font-family: Garamond; font-size: 19px;">Get information on price trends to know the market price of products.</p>
+              <br>
+
+              </div>
+          </div>
+          </div>
+        </div>
+       
+    </div>
+  </div>
+</section>
+
+
 

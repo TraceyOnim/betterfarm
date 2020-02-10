@@ -1,16 +1,21 @@
 .hero{
 	position: relative;
 }
+.row-img{
+  background-image: url('/images/sm.jpg');
+}
 
 .all_forms{
   margin-top: 75px;
 }
-
+#promo{
+   background-image: url(../images/static/sm.jpg);
+}
 #jumbotron{
   position: absolute;
   top: 25%;
   left: 25%;
-  background-color: transparent;
+  background-color: cyan;
   color: white;
  
 }
@@ -34,6 +39,9 @@ h1 {
   line-height: 1.375em;
   font-weight: 400;
   margin: 70px 0;
+}
+p {
+  font-size: 25px;
 }
 
 .annotations {
