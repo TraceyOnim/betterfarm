@@ -6,6 +6,13 @@ defmodule Betterfarm.Sales do
   alias Betterfarm.Repo
 
   @doc """
+  Returns order changeset
+  """
+  def change_cart(%Order{} = order) do
+    Order.changeset(order)
+  end
+
+  @doc """
   creates an order with status "In Cart"
   """
   def create_cart do
@@ -20,7 +27,7 @@ defmodule Betterfarm.Sales do
     |> Repo.get(id)
   end
 
-  defp _update_cart(cart, attrs) do
+  def update_cart(cart, attrs) do
     cart
     |> Order.changeset(attrs)
     |> Repo.update()
@@ -32,13 +39,13 @@ defmodule Betterfarm.Sales do
   @spec add_to_cart(struct(), map()) :: %Order{} | {:error, %Ecto.Changeset{}}
   def add_to_cart(%Order{line_items: []} = cart, cart_params) do
     cart
-    |> _update_cart(%{line_items: [cart_params]})
+    |> update_cart(%{line_items: [cart_params]})
   end
 
   def add_to_cart(%Order{line_items: existing_line_items} = cart, cart_params) do
     existing_line_items = Enum.map(existing_line_items, fn items -> Map.from_struct(items) end)
 
     cart
-    |> _update_cart(%{line_items: [cart_params | existing_line_items]})
+    |> update_cart(%{line_items: [cart_params | existing_line_items]})
   end
 end

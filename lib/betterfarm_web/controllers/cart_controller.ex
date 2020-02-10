@@ -21,6 +21,23 @@ defmodule BetterfarmWeb.CartController do
 
   def show(conn, _param) do
     cart = conn.assigns.cart
-    render(conn, "show.html", cart: cart)
+    cart_changeset = Sales.change_cart(cart) |> IO.inspect()
+    render(conn, "show.html", cart: cart, cart_changeset: cart_changeset)
+  end
+
+  def update(conn, %{"order" => cart_params}) do
+    cart = conn.assigns.cart
+
+    case Sales.update_cart(cart, cart_params) do
+      {:ok, _cart} ->
+        conn
+        |> put_flash(:info, "Cart updated successfully")
+        |> redirect(to: Routes.cart_path(conn, :show))
+
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Error updating cart")
+        |> redirect(to: Routes.cart_path(conn, :show))
+    end
   end
 end
